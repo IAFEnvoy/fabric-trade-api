@@ -68,7 +68,7 @@ public class ProfessionRegistry {
      */
     @SuppressWarnings("unchecked")
     public static boolean activate(ProfessionHolder holder) {
-        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi);
+        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi());
         if (entry instanceof RegistryEntry.Reference) {
             ((RegistryEntryReferenceAccessor<PointOfInterestType>) entry).getTagSet().add(ACTIVATE_TAG);
             return true;
@@ -84,7 +84,7 @@ public class ProfessionRegistry {
      */
     @SuppressWarnings("unchecked")
     public static boolean deactivate(ProfessionHolder holder) {
-        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi);
+        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi());
         if (entry instanceof RegistryEntry.Reference) {
             ((RegistryEntryReferenceAccessor<PointOfInterestType>) entry).getTagSet().remove(ACTIVATE_TAG);
             return true;
