@@ -42,7 +42,7 @@ public class ProfessionRegistry {
         RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(type);
         for (BlockState state : states) PointOfInterestTypesAccessor.getPoiToStatesMap().put(state, entry);
         Optional<RegistryKey<PointOfInterestType>> optional = entry.getKey();
-        if (optional.isEmpty()) return null;
+        if (optional.isEmpty()) return null;// Should not happen
         RegistryKey<PointOfInterestType> key = optional.get();
         VillagerProfession profession = Registry.register(Registries.VILLAGER_PROFESSION, id, new VillagerProfession(id.getPath(), e -> e.matchesKey(key), e -> e.matchesKey(key), ImmutableSet.of(), ImmutableSet.of(), soundEvent));
         return new ProfessionHolder(type, profession);
@@ -90,8 +90,5 @@ public class ProfessionRegistry {
             return true;
         }
         return false;
-    }
-
-    public record ProfessionHolder(PointOfInterestType poi, VillagerProfession profession) {
     }
 }
