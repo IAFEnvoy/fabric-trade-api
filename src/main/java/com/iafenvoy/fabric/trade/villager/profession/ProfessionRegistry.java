@@ -2,7 +2,6 @@ package com.iafenvoy.fabric.trade.villager.profession;
 
 import com.google.common.collect.ImmutableSet;
 import com.iafenvoy.fabric.trade.mixin.PointOfInterestTypesAccessor;
-import com.iafenvoy.fabric.trade.mixin.RegistryEntryReferenceAccessor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;
@@ -58,37 +57,5 @@ public class ProfessionRegistry {
      */
     public static ProfessionHolder register(Identifier id, SoundEvent soundEvent, Block... workStations) {
         return register(id, 1, 1, soundEvent, workStations);
-    }
-
-    /**
-     * Activates village profession.
-     *
-     * @param holder the profession holder
-     * @return Success or not
-     */
-    @SuppressWarnings("unchecked")
-    public static boolean activate(ProfessionHolder holder) {
-        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi());
-        if (entry instanceof RegistryEntry.Reference) {
-            ((RegistryEntryReferenceAccessor<PointOfInterestType>) entry).getTagSet().add(ACTIVATE_TAG);
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Deactivates village profession.
-     *
-     * @param holder the profession holder
-     * @return Success or not
-     */
-    @SuppressWarnings("unchecked")
-    public static boolean deactivate(ProfessionHolder holder) {
-        RegistryEntry<PointOfInterestType> entry = Registries.POINT_OF_INTEREST_TYPE.getEntry(holder.poi());
-        if (entry instanceof RegistryEntry.Reference) {
-            ((RegistryEntryReferenceAccessor<PointOfInterestType>) entry).getTagSet().remove(ACTIVATE_TAG);
-            return true;
-        }
-        return false;
     }
 }
